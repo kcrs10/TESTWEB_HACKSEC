@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoría de Seguridad Ética</title>
+    <style>
+        :root {
+            --primary: #00f0b5;
+            --secondary: #2d3436;
+            --text: #dfe6e9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(45, 52, 54, 0.9);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 240, 181, 0.2);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--secondary);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        button {
+            background: var(--primary);
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+        }
+
+        .error {
+            color: #ff4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .success {
+            color: #00f0b5;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .terms {
+            margin: 1rem 0;
+            color: var(--text);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .terms a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        #terms {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 240, 181, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <div class="container">
+        <h1>Auditoría de Seguridad Ética</h1>
+        <form id="auditForm">
+            <!-- Datos básicos -->
+            <div class="form-group">
+                <label>Nombre completo</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <!-- Contexto organizacional -->
+            <div class="form-group">
+                <label>Tipo de organización</label>
+                <select id="organizationType" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="startup">Startup</option>
+                    <option value="corporativa">Corporación</option>
+                    <option value="gobierno">Sector público</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Número de empleados</label>
+                <input type="number" id="employees" required>
+            </div>
+
+            <!-- Objetivos estratégicos -->
+            <div class="form-group">
+                <label>¿Qué objetivos principales busca lograr con esta auditoría?</label>
+                <textarea id="objectives" rows="4" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>¿Qué riesgos críticos identifica en su organización?</label>
+                <textarea id="risks" rows="4" required></textarea>
+            </div>
+
+            <!-- Ámbito técnico -->
+            <div class="form-group">
+                <label>¿Qué sistemas o procesos específicos requieren auditoría?</label>
+                <textarea id="systems" rows="4" required></textarea>
+            </div>
+
+             <!-- Ámbito de la auditoría -->
+            <div class="form-group">
+                <label>¿Qué tipo de auditoría necesita?</label>
+                <select id="auditScope" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="web">Sitio Web</option>
+                    <option value="server">Servidor</option>
+                    <option value="both">Sitio Web y Servidor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>¿Qué estándares o regulaciones debe cumplir? (Ej: ISO 27001, GDPR)</label>
+                <textarea id="standards" rows="4"></textarea>
+            </div>
+
+            <!-- Contexto operativo -->
+            <div class="form-group">
+                <label>¿Qué desafíos operativos enfrenta actualmente?</label>
+                <textarea id="challenges" rows="4" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>¿Qué métricas de éxito usaría para medir el impacto de esta auditoría?</label>
+                <textarea id="metrics" rows="4"></textarea>
+            </div>
+
+            <!-- Contacto -->
+            <div class="form-group">
+                <label>¿Prefiere ser contactado por teléfono o correo electrónico?</label>
+                <select id="contactPreference" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="email">Correo electrónico</option>
+                    <option value="phone">Teléfono</option>
+                </select>
+            </div>
+
+             <!-- Consentimiento para auditar la web/servidor -->
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="auditConsent" required>
+                    <span style="margin-left: 0.5rem;">
+                        Acepto que se realice una auditoría de seguridad en mi 
+                        <span id="auditScopeText">sitio web/servidor</span>, 
+                        y entiendo los riesgos asociados.
+                    </span>
+                </label>
+            </div>
+
+            <!-- Consentimiento -->
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="consent" required>
+                    <span style="margin-left: 0.5rem;">
+                        Acepto los <a href="#terms" style="color: var(--primary);">Términos y Condiciones</a> para auditorías de seguridad ética, 
+                        incluyendo el uso de técnicas de hacking controlado bajo supervisión legal.
+                    </span>
+                </label>
+            </div>
+
+            <button type="submit">Solicitar Auditoría</button>
+            <div class="error" id="error"></div>
+            <div class="success" id="success"></div>
+        </form>
+
+        <!-- Términos y condiciones -->
+        <div id="terms" class="terms">
+            <h3>Términos y Condiciones</h3>
+            <p>Al enviar este formulario, usted:</p>
+            <ul>
+                <li>Declara tener autorización legal para solicitar esta auditoría</li>
+                <li>Acepta que todas las actividades se realizarán bajo supervisión legal</li>
+                <li>Reconoce que los resultados serán usados exclusivamente para mejorar la seguridad</li>
+                <li>Acepta nuestra política de protección de datos (GDPR/CCPA)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Configuración Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        const renderer = new THREE.WebGLRenderer({
+            canvas: document.getElementById('bg')
+        });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Planeta celeste
+        const planetGeometry = new THREE.SphereGeometry(50, 64, 64);
+        const planetMaterial = new THREE.MeshPhongMaterial({
+            color: 0x00f0b5,
+            specular: 0xffffff,
+            shininess: 100,
+            emissive: 0x00f0b5,
+            emissiveIntensity: 0.5
+        });
+        const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+        scene.add(planet);
+
+        // Anillos del planeta
+        const ringGeometry = new THREE.RingGeometry(60, 80, 64);
+        const ringMaterial = new THREE.MeshPhongMaterial({
+            color: 0x00f0b5,
+            transparent: true,
+            opacity: 0.3,
+            side: THREE.DoubleSide
+        });
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+        scene.add(ring);
+
+        // Partículas estelares
+        const particleGeometry = new THREE.BufferGeometry();
+        const particleCount = 5000;
+        const positions = new Float32Array(particleCount * 3);
+        const velocities = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount; i++) {
+            positions.set([Math.random() * 200 - 100, Math.random() * 200 - 100, Math.random() * 200 - 100], i * 3);
+            velocities.set([Math.random() * 0.1 - 0.05, Math.random() * 0.1 - 0.05, Math.random() * 0.1 - 0.05], i * 3);
+            colors.set([Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5, Math.random() * 0.5 + 0.5], i * 3);
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particleGeometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+        particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const particleMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0 }
+            },
+            vertexShader: `
+                uniform float time;
+                attribute vec3 velocity;
+                attribute vec3 color;
+                varying vec3 vColor;
+
+                void main() {
+                    vColor = color;
+                    vec3 pos = position + velocity * time;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+                }
+            `,
+            fragmentShader: `
+                varying vec3 vColor;
+                void main() {
+                    gl_FragColor = vec4(vColor, 0.5);
+                }
+            `,
+            transparent: true,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+
+        // Luz dinámica
+        const light = new THREE.PointLight(0x00f0b5, 2, 100);
+        light.position.set(0, 0, 10);
+        scene.add(light);
+
+        // Animación de la cámara
+        camera.position.z = 15;
+        camera.position.y = 5;
+
+        // Función de animación
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Actualizar partículas
+            time += 0.01;
+            particleMaterial.uniforms.time.value = time;
+            
+            // Mover la luz
+            light.position.x = Math.sin(time) * 5;
+            light.position.z = Math.cos(time) * 5;
+
+            // Rotar el planeta
+            planet.rotation.y += 0.001;
+            ring.rotation.y += 0.002;
+
+            // Rotar la cámara
+            camera.rotation.z += 0.001;
+            camera.rotation.y += 0.001;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Manejo del formulario
+        const form = document.getElementById('auditForm');
+        const errorDiv = document.getElementById('error');
+        const successDiv = document.getElementById('success');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            errorDiv.textContent = '';
+            successDiv.textContent = '';
+
+            // Validación básica
+            const requiredFields = ['name', 'email', 'organizationType', 'employees', 
+                'objectives', 'risks', 'systems', 'challenges', 'contactPreference', 'auditScope'];
+            
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!document.getElementById(field).value.trim()) {
+                    errorDiv.textContent = 'Por favor complete todos los campos obligatorios';
+                    isValid = false;
+                }
+            });
+
+             if (!document.getElementById('auditConsent').checked) {
+                errorDiv.textContent = 'Debe aceptar el consentimiento para auditar la web/servidor';
+                isValid = false;
+            }
+
+            if (!document.getElementById('consent').checked) {
+                errorDiv.textContent = 'Debe aceptar los términos y condiciones';
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Simulación de éxito
+            successDiv.textContent = '¡Formulario recibido! 🚀';
+            setTimeout(() => {
+                successDiv.textContent = '';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
