@@ -2,13 +2,50 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HACKSEC - Ciberseguridad y Hacking Etico</title>
-    <meta name="description" content="Auditorías y hacking ético para proteger tu entorno digital. Soluciones seguras y profesionales para tu ciberseguridad.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Auditorías y hacking ético para proteger tu entorno digital. Soluciones seguras y profesionales para tu ciberseguridad." />
+
+    <!-- Etiqueta canónica -->
+    <link rel="canonical" href="https://kcrs10.github.io/TESTWEB_HACKSEC/public/index.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="HACKSEC - Ciberseguridad y Hacking Ético" />
+    <meta property="og:description" content="Auditorías y hacking ético para proteger tu entorno digital. Soluciones seguras y profesionales para tu ciberseguridad." />
+    <meta property="og:url" content="https://kcrs10.github.io/TESTWEB_HACKSEC/public/index.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://kcrs10.github.io/TESTWEB_HACKSEC/public/tu-imagen.jpg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HACKSEC - Ciberseguridad y Hacking Ético" />
+    <meta name="twitter:description" content="Auditorías y hacking ético para proteger tu entorno digital. Soluciones seguras y profesionales para tu ciberseguridad." />
+    <meta name="twitter:image" content="https://kcrs10.github.io/TESTWEB_HACKSEC/public/tu-imagen.jpg" />
+
+    <!-- Fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD para Schema.org -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "HACKSEC",
+          "description": "Auditorías y hacking ético para proteger tu entorno digital. Soluciones seguras y profesionales para tu ciberseguridad.",
+          "url": "https://kcrs10.github.io/TESTWEB_HACKSEC/public/index.html",
+          "sameAs": [
+            "https://facebook.com/tu-perfil",
+            "https://twitter.com/tu-perfil",
+            "https://linkedin.com/in/tu-perfil"
+          ],
+          "serviceType": "Ciberseguridad",
+          "areaServed": "Global"
+        }
+    </script>
+
     <style>
         /* Estilos generales */
         body {
@@ -70,7 +107,6 @@
         /* Menu Hamburguesa */
         .menu-toggle {
             display: none;
-            /* Ocultar en pantallas grandes */
             flex-direction: column;
             justify-content: space-around;
             width: 30px;
@@ -240,7 +276,6 @@
             nav {
                 flex-direction: row;
                 justify-content: space-between;
-                /* Espacio entre logo y menú */
             }
 
             .logo-container {
@@ -260,19 +295,15 @@
             /* Menu Hamburguesa */
             .menu-toggle {
                 display: flex;
-                /* Muestra el menú hamburguesa */
             }
 
             nav ul {
                 display: none;
-                /* Oculta los links en horizontal */
                 flex-direction: column;
-                /* Apila los links verticalmente */
                 position: absolute;
                 top: 50px;
                 right: 0;
                 background-color: rgba(0, 0, 0, 0.9);
-                /* Fondo oscuro */
                 width: 100%;
                 text-align: center;
                 padding: 10px 0;
@@ -281,7 +312,6 @@
 
             nav ul.active {
                 display: flex;
-                /* Muestra el menu cuando esta activo */
             }
 
             nav ul li {
@@ -290,19 +320,14 @@
 
             nav ul li a {
                 font-size: 1em;
-                /* Aumenta el tamaño en el menu desplegado */
                 padding: 10px;
-                /* Espacio para mejor interactividad */
                 display: block;
             }
 
             .contact-button {
                 font-size: 1em;
-                /* Aumenta el tamaño */
                 padding: 10px 20px;
-                /* Aumenta el espacio */
                 margin-top: 10px;
-                /* Espacio adicional */
             }
         }
     </style>
@@ -316,7 +341,7 @@
                 <p class="cyber-security-tag">[ CIBERSEGURIDAD ÉTICA ]</p>
             </div>
 
-            <button class="menu-toggle">
+            <button class="menu-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -332,17 +357,20 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Ciberseguridad Inteligente, Protección Total.</h1>
-            <p class="hero-text">Hacking ético y ciberseguridad para proteger tu mundo digital.
+            <p class="hero-text">
+                Hacking ético y ciberseguridad para proteger tu mundo digital.
                 Auditamos, mejoramos y aseguramos tu infraestructura con las últimas técnicas y un compromiso ético.
             </p>
             <a href="./auditoria-gratis.html" class="contact-button">Solicita una Auditoría Gratuita</a>
         </div>
         <div class="scroll-explore">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5a.5.5 0 0 1 .5-.5" />
-                </svg></span>
+                </svg>
+            </span>
             <span>Scroll to explore</span>
         </div>
     </section>
